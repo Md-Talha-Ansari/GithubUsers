@@ -1,4 +1,4 @@
-package com.hind.githubapp
+package com.hind.githubusers
 
 import com.hind.githubusers.domain.RemoteException
 
