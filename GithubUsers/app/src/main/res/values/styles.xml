@@ -7,4 +7,18 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="base_text" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/medium_text</item>
+        <item name="android:textColor">@color/label_text_color</item>
+    </style>
+
+    <style name="info_text" parent="base_text">
+        <item name="android:textColor">@color/info_text_color</item>
+    </style>
+
+    <style name="splash_text" parent="info_text">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/extra_large_text</item>
+    </style>
 </resources>
