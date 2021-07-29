@@ -1,9 +1,7 @@
 package com.hind.githubusers.domain
 
 import com.google.gson.Gson
-import com.hind.githubapp.MockDataProvider
-import com.hind.githubusers.domain.UserBasicInfo
-import com.hind.githubusers.domain.UsersList
+import com.hind.githubusers.MockDataProvider
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Before
