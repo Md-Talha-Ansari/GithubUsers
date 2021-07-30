@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Github Users</string>
+    <string name="user_image_description">Github user image.</string>
+    <string name="loading_users">Loading users…</string>
 </resources>
