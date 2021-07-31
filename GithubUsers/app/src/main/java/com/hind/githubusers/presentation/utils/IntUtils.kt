@@ -1,8 +1,6 @@
 package com.hind.githubusers.presentation.utils
 
-import java.math.RoundingMode
 import java.text.DecimalFormat
-import kotlin.math.ln
 
 object IntUtils {
 

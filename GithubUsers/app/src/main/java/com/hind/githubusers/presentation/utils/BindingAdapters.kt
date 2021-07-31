@@ -45,7 +45,7 @@ object BindingAdapters {
      */
     @JvmStatic
     @BindingAdapter("android:visibility")
-    open fun setVisibility(view: View, value: Boolean) {
+    fun setVisibility(view: View, value: Boolean) {
         view.visibility = if (value) View.VISIBLE else View.GONE
     }
 
@@ -56,7 +56,7 @@ object BindingAdapters {
      */
     @JvmStatic
     @BindingAdapter("android:text")
-    open fun setText(view: TextView, value: Int) {
+    fun setText(view: TextView, value: Int) {
         view.text = value.toShortHand()
     }
 
