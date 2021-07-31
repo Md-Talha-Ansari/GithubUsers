@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.hind.githubusers.data.UserDataRepository
 import com.hind.githubusers.data.UsersDataSource
 import com.hind.githubusers.presentation.users.list.UsersListViewModel
+import com.hind.githubusers.presentation.users.profile.UserProfileViewModel
 
 /**
  * View model factory for vie models of type UsersBaseViewModel.
@@ -19,8 +20,8 @@ class UsersViewModelFactory(val dataSource: UsersDataSource):ViewModelProvider.N
 
         if(modelClass == UsersListViewModel::class.java){
             return UsersListViewModel(UserDataRepository(dataSource)) as T
-        }else {
-            //Add for profile view model
+        }else if(modelClass == UserProfileViewModel::class.java){
+            return UserProfileViewModel(UserDataRepository(dataSource)) as T
         }
 
         return super.create(modelClass)
