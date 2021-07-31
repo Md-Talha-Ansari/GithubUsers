@@ -7,4 +7,9 @@
     <dimen name="users_list_item_margin">5dp</dimen>
     <dimen name="loading_spinner_width">50dp</dimen>
     <dimen name="loading_spinner_height">50dp</dimen>
+    <dimen name="label_and_info_margin">2dp</dimen>
+    <dimen name="profile_image_width">150dp</dimen>
+    <dimen name="profile_image_height">150dp</dimen>
+    <dimen name="profile_items_vertical_margin">5dp</dimen>
+    <dimen name="profile_items_horizontal_margin">5dp</dimen>
 </resources>

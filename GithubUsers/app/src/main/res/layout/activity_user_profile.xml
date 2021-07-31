@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="viewModel"
+            type="com.hind.githubusers.presentation.users.profile.UserProfileViewModel" />
+    </data>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,4 +12,166 @@
     android:layout_height="match_parent"
     tools:context=".presentation.users.profile.UserProfileActivity">
 
+    <ImageView
+        android:id="@+id/imgAvatar"
+        android:layout_width="@dimen/profile_image_width"
+        android:layout_height="@dimen/profile_image_height"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/user_image_description"
+        app:imageUrl="@{viewModel.userProfileInfo.avatarUrl}"
+        android:visibility="@{viewModel.didLoad}"
+        />
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/bold_base_text"
+        android:textSize="@dimen/large_text"
+        app:layout_constraintTop_toBottomOf="@+id/imgAvatar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="@{viewModel.userProfileInfo.name}"
+        android:visibility="@{viewModel.userProfileInfo.name.length() > 0}"
+        android:layout_marginTop="@dimen/profile_items_vertical_margin"/>
+
+    <TextView
+        android:id="@+id/userHandle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/bold_info_text"
+        app:layout_constraintTop_toBottomOf="@+id/userName"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="@{viewModel.userProfileInfo.login}"
+        android:visibility="@{viewModel.didLoad}"
+        android:layout_marginTop="@dimen/profile_items_vertical_margin"/>
+
+    <TextView
+        android:id="@+id/followerCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/bold_info_text"
+        app:layout_constraintTop_toBottomOf="@+id/userHandle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="@{viewModel.userProfileInfo.followers}"
+        android:visibility="@{viewModel.didLoad}"
+        android:layout_marginTop="@dimen/profile_items_vertical_margin"/>
+
+    <TextView
+        android:id="@+id/followersLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/base_text"
+        app:layout_constraintTop_toTopOf="@+id/followerCount"
+        app:layout_constraintLeft_toRightOf="@+id/followerCount"
+        android:text="@string/followers"
+        android:visibility="@{viewModel.didLoad}"
+        android:layout_marginStart="@dimen/label_and_info_margin" />
+
+    <TextView
+        android:id="@+id/followingCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/bold_info_text"
+        app:layout_constraintTop_toBottomOf="@+id/userHandle"
+        app:layout_constraintRight_toLeftOf="@+id/followingLabel"
+        android:text="@{viewModel.userProfileInfo.following}"
+        android:visibility="@{viewModel.didLoad}"
+        android:layout_marginEnd="@dimen/label_and_info_margin"
+        android:layout_marginTop="@dimen/profile_items_vertical_margin"/>
+
+    <TextView
+        android:id="@+id/followingLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/base_text"
+        app:layout_constraintTop_toTopOf="@+id/followerCount"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="@string/following"
+        android:visibility="@{viewModel.didLoad}" />
+
+    <TextView
+        android:id="@+id/repoCount"
+        style="@style/info_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{viewModel.userProfileInfo.publicRepos}"
+        app:layout_constraintTop_toBottomOf="@+id/followerCount"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="@dimen/profile_items_vertical_margin"
+        android:visibility="@{viewModel.didLoad}" />
+
+    <TextView
+        android:id="@+id/repoCountLabel"
+        style="@style/base_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/repositories"
+        app:layout_constraintTop_toTopOf="@+id/repoCount"
+        app:layout_constraintLeft_toRightOf="@+id/repoCount"
+        android:layout_marginStart="@dimen/label_and_info_margin"
+        android:visibility="@{viewModel.didLoad}" />
+
+    <TextView
+        android:id="@+id/loation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_image_location"
+        style="@style/info_text"
+        android:text="@{viewModel.userProfileInfo.location}"
+        android:visibility="@{viewModel.userProfileInfo.location.length() > 0}"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/repoCount"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="@dimen/profile_items_vertical_margin"/>
+
+
+    <TextView
+        android:id="@+id/blogLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/info_text"
+        android:text="@{viewModel.userProfileInfo.blog}"
+        android:visibility="@{viewModel.userProfileInfo.blog.length() > 0}"
+        android:gravity="center"
+        android:drawableStart="@drawable/ic_image_link"
+        app:layout_constraintTop_toBottomOf="@+id/loation"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="@dimen/profile_items_vertical_margin"
+        />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="@{!viewModel.didLoad}" />
+
+    <ProgressBar
+        android:id="@+id/loadingSpinner"
+        android:layout_width="@dimen/loading_spinner_width"
+        android:layout_height="@dimen/loading_spinner_height"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:visibility="@{!viewModel.didLoad}"
+        />
+
+    <TextView
+        android:id="@+id/loadingText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/base_text"
+        app:layout_constraintTop_toBottomOf="@+id/loadingSpinner"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="@string/loading_user_profile"
+        android:visibility="@{!viewModel.didLoad}"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

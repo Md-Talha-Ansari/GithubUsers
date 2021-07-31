@@ -2,4 +2,9 @@
     <string name="app_name">Github Users</string>
     <string name="user_image_description">Github user image.</string>
     <string name="loading_users">Loading users…</string>
+    <string name="loading_user_profile">Loading user profile…</string>
+    <string name="followers">followers</string>
+    <string name="following">following</string>
+    <string name="repositories">Repositories</string>
+    <string name="error_loading_profile">Cannot load user profile information.</string>
 </resources>

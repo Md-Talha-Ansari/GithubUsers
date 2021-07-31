@@ -17,6 +17,14 @@
         <item name="android:textColor">@color/info_text_color</item>
     </style>
 
+    <style name="bold_base_text" parent="base_text">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="bold_info_text" parent="info_text">
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="splash_text" parent="info_text">
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">@dimen/extra_large_text</item>
