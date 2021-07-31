@@ -15,6 +15,10 @@ class UsersListViewModel(dataRepository: UserDataRepository) :UsersBaseViewModel
 
     val isLoadingUsers = MutableLiveData(false)
 
+    val isError = MutableLiveData(false)
+
+    val canRetry = MutableLiveData(false)
+
     /**
      * Loads the next users.
      */
@@ -22,6 +26,7 @@ class UsersListViewModel(dataRepository: UserDataRepository) :UsersBaseViewModel
         if(isLoadingUsers.value == true){
             return
         }
+        canRetry.postValue(false)
         val next = usersList.value?.next
         isLoadingUsers.postValue(true)
         if (next != null) {
@@ -37,10 +42,15 @@ class UsersListViewModel(dataRepository: UserDataRepository) :UsersBaseViewModel
         override fun onSuccess(result: UsersList) {
             usersList.postValue(result)
             isLoadingUsers.postValue(false)
+            canRetry.postValue(false)
         }
 
         override fun onError(error: Throwable) {
             isLoadingUsers.postValue(false)
+            isError.postValue(true)
+            if(usersList.value?.userList.isNullOrEmpty()){
+                canRetry.postValue(true)
+            }
         }
     }
 

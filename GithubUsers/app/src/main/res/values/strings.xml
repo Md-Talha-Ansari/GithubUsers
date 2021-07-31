@@ -7,4 +7,7 @@
     <string name="following">following</string>
     <string name="repositories">Repositories</string>
     <string name="error_loading_profile">Cannot load user profile information.</string>
+    <string name="error_loading_users_swipe">Cannot load users list please swipe up to retry.</string>
+    <string name="error_loading_users_retry">Cannot load users list please retry.</string>
+    <string name="retry">Tap to retry.</string>
 </resources>

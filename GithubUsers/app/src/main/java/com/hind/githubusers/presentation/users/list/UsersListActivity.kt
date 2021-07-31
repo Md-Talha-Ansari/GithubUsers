@@ -3,7 +3,9 @@ package com.hind.githubusers.presentation.users.list
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -26,10 +28,13 @@ class UsersListActivity : AppCompatActivity() {
     //Recycler view adapter
     private val usersListAdapter:UsersListAdapter by lazy {
         UsersListAdapter(View.OnClickListener {
-            //Navigate to next
-            val intent = Intent(this,UserProfileActivity::class.java)
-            intent.putExtra("username",it.tag.toString())
-            startActivity(intent)
+            if(viewModel.isLoadingUsers.value == false){
+                //Navigate to next
+                val intent = Intent(this,UserProfileActivity::class.java)
+                intent.putExtra("username",it.tag.toString())
+                startActivity(intent)
+            }
+
         })
     }
 
@@ -86,6 +91,22 @@ class UsersListActivity : AppCompatActivity() {
         viewModel.usersList.observe(this, Observer {
             usersListAdapter.addUsers(it.userList)
         })
+        viewModel.isError.observe(this, Observer {
+            if(it){
+                val message =  if(viewModel.canRetry.value == true) R.string.error_loading_users_retry else R.string.error_loading_users_swipe
+                val toast = Toast.makeText(this,message,Toast.LENGTH_LONG)
+                toast.setGravity(
+                    Gravity.TOP,0,0)
+                toast.show()
+            }
+        })
+    }
+
+    /**
+     * Method to retry fetching user list.
+     */
+    fun onRetry(view: View) {
+        viewModel.loadNextUsers()
     }
 
 }
