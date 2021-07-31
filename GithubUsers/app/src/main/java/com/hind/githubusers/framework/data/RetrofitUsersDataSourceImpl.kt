@@ -29,7 +29,9 @@ class RetrofitUsersDataSourceImpl : UsersDataSource {
                     val users = UsersList(responseBody,linksHeader)
                     callback.onSuccess(users)
                 }else{
-                    callback.onError(RemoteException(response.errorBody().toString()))
+                    response.errorBody()?.let {
+                        callback.onError(RemoteException(it.string()))
+                    }
                 }
             }
 
@@ -55,7 +57,9 @@ class RetrofitUsersDataSourceImpl : UsersDataSource {
                 if(response.isSuccessful && responseBody != null){
                     callback.onSuccess(responseBody)
                 }else{
-                    callback.onError(RemoteException(response.errorBody().toString()))
+                    response.errorBody()?.let {
+                        callback.onError(RemoteException(it.string()))
+                    }
                 }
             }
 
