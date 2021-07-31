@@ -43,7 +43,7 @@ class UserProfileActivity : AppCompatActivity() {
      * Initialize the view model.
      */
     private fun initViewModel(){
-        val userName = ""//intent.getStringExtra("username")
+        val userName = intent.getStringExtra("username")
         userName?.let {
             viewModel.loadUserProfile(userName)
         }
