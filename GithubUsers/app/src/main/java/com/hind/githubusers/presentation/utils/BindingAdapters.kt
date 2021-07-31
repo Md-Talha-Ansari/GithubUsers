@@ -3,8 +3,10 @@ package com.hind.githubusers.presentation.utils
 import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.hind.githubusers.presentation.utils.IntUtils.toShortHand
 
 object BindingAdapters {
 
@@ -39,12 +41,23 @@ object BindingAdapters {
     /**
      * Binding adapter to set view visibility from boolean values.
      * @param view View to set visibility for.
-     * @param visibility Visibility state true -> Visible and false -> Invisible
+     * @param value Visibility state true -> Visible and false -> Invisible
      */
     @JvmStatic
     @BindingAdapter("android:visibility")
     open fun setVisibility(view: View, value: Boolean) {
         view.visibility = if (value) View.VISIBLE else View.GONE
+    }
+
+    /**
+     * Binding adapter to set view text from boolean values.
+     * @param view TextView to set text to.
+     * @param value
+     */
+    @JvmStatic
+    @BindingAdapter("android:text")
+    open fun setText(view: TextView, value: Int) {
+        view.text = value.toShortHand()
     }
 
 }
